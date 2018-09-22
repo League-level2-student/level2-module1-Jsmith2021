@@ -7,34 +7,39 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+
 public class LeagueInvaders {
-JFrame frame= new JFrame();
-Timer timer;
-JPanel GamePanel;
-final double WIDTH=500;
-final double HEIGHT=800;
+	JFrame frame; 	
+GamePanel panel1;
+final int WIDTH=500;
+final int HEIGHT=800;
+
+
+	LeagueInvaders(){
+		frame = new JFrame();
+		panel1 = new GamePanel();
+	}
 	public static void main(String[] args) {
-		new LeagueInvaders().createUI();
 		
+		LeagueInvaders invader=new LeagueInvaders();
+		invader.setup();
 	}
-	public void createUI() {
-		frame.setVisible(true);
-		frame.add(GamePanel);
-		frame.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        frame.pack();
-	}
-	public class GamePanel extends JPanel implements ActionListener {
-		Timer timer=new Timer(1000/60,this);
-		JPanel GamePanel = new JPanel();
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			JOptionPane.showMessageDialog(null, "message");
-		}
+
 	
-	}
-	public void startGame() {
-		timer.start();
-	}
+	public void setup() {
+		frame.add(panel1);
+        frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		frame.pack();
+		frame.setVisible(true);
+		panel1.startGame();
+		frame.addKeyListener(panel1);
+		
+		
+}
+	
+	
 	}
 
